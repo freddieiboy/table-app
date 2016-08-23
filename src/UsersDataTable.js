@@ -5,6 +5,9 @@ import SearchBox from './SearchBox';
 class UsersDataTable extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      test: false
+    }
   }
 
   render() {
@@ -54,17 +57,35 @@ class UsersDataTable extends Component {
                 action={() => console.log('do action')}
                 /></td>
             </tr>
-            <tr>
-              <td>Tam</td>
-              <td>Wyoming</td>
-              <td>41</td>
-              <td><Button
-                label={'Edit'}
-                size={'small'}
-                type={'outline'}
-                action={() => console.log('do action')}
-                /></td>
-            </tr>
+            {this.state.test ?
+              <tr>
+                <td><input type="text" value="Tam"/></td>
+                <td><input type="text" value="Wyoming"/></td>
+                <td><input type="text" value="41"/></td>
+                <td style={{position: 'relative'}}><Button
+                  label={'Cancel'}
+                  size={'small'}
+                  type={'outline'}
+                  action={() => this.setState({test: false})}
+                  />
+                  <div style={{position: 'absolute', top: 12, left: 100}}><Button
+                    label={'Save'}
+                    size={'small'}
+                    action={() => this.setState({test: true})}
+                    /></div></td>
+              </tr>
+              :
+              <tr>
+                <td>Tam</td>
+                <td>Wyoming</td>
+                <td>41</td>
+                <td><Button
+                  label={'Edit'}
+                  size={'small'}
+                  type={'outline'}
+                  action={() => this.setState({test: true})}
+                  /></td>
+              </tr>}
           </tbody>
         </table>
       </div>

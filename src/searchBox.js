@@ -19,6 +19,7 @@ class SearchBox extends Component {
         marginTop: '10px',
       },
       label: {
+        marginTop: '1em',
         marginRight: '1em',
         opacity: .5,
       },

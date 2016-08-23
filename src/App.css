@@ -1,3 +1,11 @@
 input[type='text']:focus {
   border: 0.1rem solid #7EB10E !important;
 }
+
+td {
+  max-width: 63px;
+}
+
+input {
+  margin-bottom: 0 !important;
+}
