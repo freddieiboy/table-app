@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './Button';
 
 class UsersDataTable extends Component {
   constructor(props) {
@@ -31,19 +32,34 @@ class UsersDataTable extends Component {
               <td>Joe</td>
               <td>California</td>
               <td>23</td>
-              <td>Edit</td>
+              <td><Button
+                label={'Edit'}
+                size={'small'}
+                type={'outline'}
+                action={() => console.log('do action')}
+                /></td>
             </tr>
             <tr>
               <td>Lana</td>
               <td>Texas</td>
               <td>65</td>
-              <td>Edit</td>
+              <td><Button
+                label={'Edit'}
+                size={'small'}
+                type={'outline'}
+                action={() => console.log('do action')}
+                /></td>
             </tr>
             <tr>
               <td>Tam</td>
               <td>Wyoming</td>
               <td>41</td>
-              <td>Edit</td>
+              <td><Button
+                label={'Edit'}
+                size={'small'}
+                type={'outline'}
+                action={() => console.log('do action')}
+                /></td>
             </tr>
           </tbody>
         </table>
