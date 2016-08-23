@@ -13,7 +13,8 @@ class UsersDataTable extends Component {
         margin: '5em',
         padding: '1em 3em',
         backgroundColor: 'white',
-        boxShadow: '0px 9px 16px 0px rgba(0,0,0,0.16)'
+        boxShadow: '0px 9px 16px 0px rgba(0,0,0,0.16)',
+        maxWidth: '1000px'
       }
     }
     return (
