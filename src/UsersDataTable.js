@@ -10,11 +10,14 @@ class UsersDataTable extends Component {
   render() {
     const styles = {
       UsersDataTable: {
+        flex: 'auto',
         padding: '1em 3em',
         backgroundColor: 'white',
         boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.1)',
         maxWidth: '900px',
-        width: '100%'
+        width: '100%',
+        minHeight: '320px',
+        maxHeight: '320px'
       }
     }
     return (

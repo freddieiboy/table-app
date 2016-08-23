@@ -16,20 +16,27 @@ class App extends Component {
         height: '100vh'
       },
       logoContainer: {
-        // flex: 0,
-        padding: '4em',
-        marginBottom: '5em'
+        flex: '0',
+        minHeight: '10em',
+        marginBottom: '3em'
+        // width: '100%',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // backgroundColor: 'blue'
+        // padding: '4em',
+        // marginBottom: '5em'
       },
       logo: {
+        transform: 'translate(0, 7em) scale(6)',
         // transform: 'scale(1)',
       }
     }
     return (
       <div className="App" style={styles.App}>
         <div className="logoContainer" style={styles.logoContainer}>
-          {/* <div className="logo" style={styles.logo}> */}
+          <div className="logo" style={styles.logo}>
             <Logo/>
-          {/* </div> */}
+          </div>
         </div>
         <SearchBox/>
         <UsersDataTable/>

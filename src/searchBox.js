@@ -4,12 +4,14 @@ class SearchBox extends Component {
   render() {
     const styles = {
       SearchBox: {
+        flex: 'auto',
         marginBottom: '1em',
         padding: '1em 3em',
         backgroundColor: 'white',
         boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.1)',
         maxWidth: '900px',
         minHeight: '95px',
+        maxHeight: '95px',
         width: '100%'
       },
       input: {
