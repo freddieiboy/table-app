@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from './Button';
+import SearchBox from './SearchBox';
 
 class UsersDataTable extends Component {
   constructor(props) {
@@ -9,12 +10,11 @@ class UsersDataTable extends Component {
   render() {
     const styles = {
       UsersDataTable: {
-        flex: 1,
-        margin: '5em',
         padding: '1em 3em',
         backgroundColor: 'white',
-        boxShadow: '0px 9px 16px 0px rgba(0,0,0,0.16)',
-        maxWidth: '1000px'
+        boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.1)',
+        maxWidth: '900px',
+        width: '100%'
       }
     }
     return (
