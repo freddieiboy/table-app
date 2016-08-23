@@ -30,7 +30,7 @@ class SearchBox extends Component {
     return (
       <div className="SearchBox" style={styles.SearchBox}>
         <div className="searchContainer" style={styles.searchContainer}>
-          <label style={styles.label}>Filter</label>
+          <label style={styles.label}>Search</label>
           <input type="text" placeholder="Search items, comma separated" id="nameField" style={styles.input}/>
         </div>
       </div>
