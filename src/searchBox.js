@@ -3,17 +3,33 @@ import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import Autosuggest from 'react-autosuggest'
 import AutosizeInput from 'react-input-autosize'
+import $ from 'jquery';
 
 
 class SearchBox extends Component {
   constructor() {
     super()
-      this.state = {tags: []}
+      this.state = {
+        tags: []
+      }
     }
 
   handleChange(tags) {
     this.setState({tags})
+    // setTimeout(() => {
+    //   this.highlightEntries();
+    // }, 1);
   }
+
+  // highlightEntries = () => {
+  //   this.state.tags.map((tag) => {
+  //     if (tag === $('.UsersDataTable td').text()) {
+  //       console.log('found')
+  //     } else {
+  //       console.log('nah')
+  //     }
+  //   })
+  // }
 
   autosuggestRenderInput = (props) => {
     const {addTag, ...other} = props
@@ -84,7 +100,6 @@ class SearchBox extends Component {
         alignItems: 'center',
       }
     }
-
     return (
       <div className="SearchBox" style={styles.SearchBox}>
         <div className="searchContainer" style={styles.searchContainer}>

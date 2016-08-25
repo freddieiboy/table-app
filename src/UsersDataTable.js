@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button';
+import { FirebaseDb } from './modules/firebase';
+let ref = FirebaseDb.ref();
 
 class UsersDataTable extends Component {
   constructor(props) {
@@ -7,6 +9,34 @@ class UsersDataTable extends Component {
     this.state = {
       test: false
     }
+  }
+
+  componentWillMount = () => {
+    ref.child('UserData').transaction((data) => {
+      if (data === null) {
+        // INIT user table data if firebase is null
+        return {
+          Joe: {
+            location: 'California',
+            age: 23
+          },
+          Lana: {
+            location: 'Texas',
+            age: 64
+          },
+          Tam: {
+            location: 'Wyoming',
+            age: 41
+          }
+        }
+      } else {
+        console.log('UserData exists.')
+      }
+    }, (error) => {
+      if (error) {
+        console.log('Transaction failed abnormally!', error);
+      }
+    });
   }
 
   render() {
