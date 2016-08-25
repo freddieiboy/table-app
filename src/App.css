@@ -1,10 +1,28 @@
-input[type='text']:focus {
-  border: 0.1rem solid #7EB10E !important;
+/* CSS RESET */
+
+.table-input {
+  max-width: 164px !important;
 }
 
-td {
-  max-width: 63px;
+.react-tagsinput {
+  width: 100%;
 }
+
+.react-tagsinput-input input {
+  border: none !important;
+}
+
+.react-tagsinput-input input:focus {
+  border: none !important;
+}
+
+/*input[type='text']:focus {
+  border: 0.1rem solid #7EB10E !important;
+}*/
+
+/*td {
+  max-width: 63px;
+}*/
 
 input {
   margin-bottom: 0 !important;

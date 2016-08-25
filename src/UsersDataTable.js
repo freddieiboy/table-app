@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from './Button';
-import SearchBox from './SearchBox';
 
 class UsersDataTable extends Component {
   constructor(props) {
@@ -59,9 +58,9 @@ class UsersDataTable extends Component {
             </tr>
             {this.state.test ?
               <tr>
-                <td><input type="text" value="Tam"/></td>
-                <td><input type="text" value="Wyoming"/></td>
-                <td><input type="text" value="41"/></td>
+                <td><input className="table-input" type="text" defaultValue="Tam" onChange={(text) => console.log(text.nativeEvent.srcElement.value)}/></td>
+                <td><input className="table-input" type="text" defaultValue="Wyoming"/></td>
+                <td><input className="table-input" type="text" defaultValue="41"/></td>
                 <td style={{position: 'relative'}}><Button
                   label={'Cancel'}
                   size={'small'}
