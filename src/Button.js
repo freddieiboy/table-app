@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+/*
+  Simple button with a few props types.
+
+  <Button
+    action={() => action()}
+    type={'outline'}
+    size={'small'}/>
+
+  Remove type and size props for default solid button.
+*/
+
 class Button extends Component {
   constructor(props) {
     super(props);
@@ -60,6 +71,10 @@ class Button extends Component {
 }
 
 export function ifStyle() {
+  /*
+    ifStyle combines different styles objects.
+    Use it simply with: `state if true` && styles.object.
+  */
   var res = {};
   for (var i = 0; i < arguments.length; ++i) {
     if (arguments[i]) {
