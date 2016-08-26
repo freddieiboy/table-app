@@ -31,14 +31,16 @@ class App extends Component {
 
     this.state.userDataList.map(user => {
       tags.map(tag => {
-        if (user.name.toLowerCase() === tag.toLowerCase()) {
+        if (
+          user.location.toLowerCase() === tag.toLowerCase() ||
+          user.name.toLowerCase() === tag.toLowerCase() ||
+          user.age.toString().toLowerCase() === tag.toLowerCase()
+        ) {
           createNewList.push(user)
         }
       })
     })
-    // setTimeout(() => {
-      this.setState({filteredUserDataList: createNewList})
-    // }, 1000)
+    this.setState({filteredUserDataList: createNewList})
   }
 
   initUserDatabase = () => {
@@ -113,7 +115,6 @@ class App extends Component {
           addSearchTags={this.addSearchTags}
           tags={this.state.searchTags}/>
         <UsersDataTable
-          searchTags={this.state.searchTags}
           userDataList={
             this.state.searchTags.length > 0 ?
             this.state.filteredUserDataList :
