@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import UserRow from './UserRow';
 
+/*
+  UsersDataTable is the main table.
+
+  <UsersDataTable
+    userDataList={
+      if_there_are_search_tags ?
+      filtered_user_list :
+      default_user_list
+    }/>
+
+  Table inherits userDataList from App.js. Rows are iterated from items in
+  userDataList props with `<UserRow/>`.
+*/
+
 class UsersDataTable extends Component {
   constructor(props) {
     super(props);
@@ -29,8 +43,15 @@ class UsersDataTable extends Component {
       }
     }
 
+    /*
+      Render Table.
+
+      Switch between table and empty state on the size of userDataList.
+    */
+
     return (
       <div className="UsersDataTable" style={styles.UsersDataTable}>
+      {this.props.userDataList.length > 0 ?
         <table>
           <thead>
             <tr>
@@ -41,15 +62,12 @@ class UsersDataTable extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.userDataList.length < 1 ?
-            <tr>
-              <td>No Data</td>
-            </tr>
-          :
-            this.setupTableRows()
-          }
+            {this.setupTableRows()}
           </tbody>
         </table>
+        :
+        <div className="emptyState">Empty</div>
+      }
       </div>
     )
   }
