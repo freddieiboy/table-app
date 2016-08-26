@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import TagsInput from 'react-tagsinput'
-// import 'react-tagsinput/react-tagsinput.css'
-// import Autosuggest from 'react-autosuggest'
 import AutosizeInput from 'react-input-autosize'
-// import $ from 'jquery';
 
+/*
+  Searchbox to create tags to filter the table.
+
+  Tags are not stored in the SearchBox.js local state. They are pushed to
+  App.js local state. Move state if a library like Redux is implemented.
+  Users type their search terms and press enter to push their tags to
+  App.js local state from `(tags) => this.props.addSearchTags(tags)`
+*/
 
 class SearchBox extends Component {
-  constructor() {
-    super()
-      this.state = {
-        tags: []
-      }
-    }
-
-  handleChange(tags) {
-    this.props.addSearchTerm(tags);
-    // this.setState({tags})
+  constructor(props) {
+    super(props);
   }
 
   autosizingRenderInput = (props) => {
+    /*
+      Additional library for react-tagsinput.
+    */
     let {onChange, value, ...other} = props
     return (
       <AutosizeInput type='text' onChange={onChange} value={value} {...other} />
@@ -54,11 +54,20 @@ class SearchBox extends Component {
         alignItems: 'center',
       }
     }
+
+    /*
+      Render Searchbox with `react-tagsinput`.
+
+      A new renderInput is added from AutosizeInput library.
+      TagsInput Docs: https://github.com/olahol/react-tagsinput
+      Autosize Docs: https://github.com/JedWatson/react-input-autosize
+    */
+
     return (
       <div className="SearchBox" style={styles.SearchBox}>
         <div className="searchContainer" style={styles.searchContainer}>
           <label style={styles.label}>Search</label>
-          {/* <input type="text" placeholder="Search items, comma separated" id="nameField" style={styles.input} /> */}
+
           <TagsInput
             inputProps={{
               placeholder: "Search items, enter separated"
