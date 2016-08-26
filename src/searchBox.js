@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css'
-import Autosuggest from 'react-autosuggest'
+// import 'react-tagsinput/react-tagsinput.css'
+// import Autosuggest from 'react-autosuggest'
 import AutosizeInput from 'react-input-autosize'
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 class SearchBox extends Component {
@@ -16,53 +16,6 @@ class SearchBox extends Component {
 
   handleChange(tags) {
     this.setState({tags})
-    // setTimeout(() => {
-    //   this.highlightEntries();
-    // }, 1);
-  }
-
-  // highlightEntries = () => {
-  //   this.state.tags.map((tag) => {
-  //     if (tag === $('.UsersDataTable td').text()) {
-  //       console.log('found')
-  //     } else {
-  //       console.log('nah')
-  //     }
-  //   })
-  // }
-
-  autosuggestRenderInput = (props) => {
-    const {addTag, ...other} = props
-
-		const handleOnChange = (e, {newValue, method}) => {
-       if (method === 'enter') {
-         e.preventDefault()
-       } else {
-         props.onChange(e)
-       }
-     }
-
-			const inputValue = (props.value && props.value.trim().toLowerCase()) || ""
-			const inputLength = inputValue.length
-
-     let {tags} = this.state
-     let suggestions = states().filter((state) => {
-				return state.name.toLowerCase().slice(0, inputLength) === inputValue
-     })
-
-    return (
-      <Autosuggest
-        ref={props.ref}
-        suggestions={suggestions}
-        shouldRenderSuggestions={(value) => value && value.trim().length > 0}
-        getSuggestionValue={(suggestion) => suggestion.name}
-        renderSuggestion={(suggestion) => <span>{suggestion.name}</span>}
-        inputProps={props}
-        onSuggestionSelected={(e, {suggestion}) => {
-          this.refs.tagsinput.addTag(suggestion.name)
-        }}
-      />
-    )
   }
 
   autosizingRenderInput = (props) => {
@@ -91,7 +44,7 @@ class SearchBox extends Component {
         fontSize: '.9em'
       },
       label: {
-        marginTop: '1em',
+        marginTop: '.4em',
         marginRight: '1em',
         opacity: .5,
       },
@@ -106,7 +59,9 @@ class SearchBox extends Component {
           <label style={styles.label}>Search</label>
           {/* <input type="text" placeholder="Search items, comma separated" id="nameField" style={styles.input} /> */}
           <TagsInput
-            inputProps={{placeholder: "Search items, enter separated"}}
+            inputProps={{
+              placeholder: "Search items, enter separated"
+            }}
             renderInput={this.autosizingRenderInput}
             value={this.state.tags}
             onChange={(tags) => this.handleChange(tags)} />
