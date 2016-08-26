@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserRow from './UserRow';
+import { Logo } from './logo';
 
 /*
   UsersDataTable is the main table.
@@ -40,6 +41,22 @@ class UsersDataTable extends Component {
         width: '100%',
         minHeight: '320px',
         maxHeight: '320px'
+      },
+      emptyState: {
+        display: 'flex',
+        flex: 'auto',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '320px'
+      },
+      logoEmpty: {
+        transform: 'scale(3)',
+        marginTop: '1em',
+        marginRight: '2em'
+      },
+      textEmpty: {
+        fontSize: '2em',
+        color: '#D8D8D8'
       }
     }
 
@@ -66,7 +83,14 @@ class UsersDataTable extends Component {
           </tbody>
         </table>
         :
-        <div className="emptyState">Empty</div>
+        <div className="emptyState" style={styles.emptyState}>
+          <div className="logo-empty" style={styles.logoEmpty}>
+            <Logo color={'#D8D8D8'}/>
+          </div>
+          <div className="text-empty" style={styles.textEmpty}>
+            No Entries
+          </div>
+        </div>
       }
       </div>
     )
