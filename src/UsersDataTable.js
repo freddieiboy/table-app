@@ -6,6 +6,16 @@ class UsersDataTable extends Component {
     super(props);
   }
 
+  setupTableRows = () => {
+    console.log('running setupTableRows')
+    let userDataList = this.props.userDataList;
+    return userDataList.map((user, key) => {
+      return (
+        <UserRow key={key} userData={user}/>
+      )
+    })
+  }
+
   render() {
     const styles = {
       UsersDataTable: {
@@ -18,15 +28,6 @@ class UsersDataTable extends Component {
         minHeight: '320px',
         maxHeight: '320px'
       }
-    }
-
-    const setupTableRows = () => {
-      let userDataList = this.props.userDataList;
-      return userDataList.map((user, key) => {
-        return (
-          <UserRow key={key} userData={user}/>
-        )
-      })
     }
 
     return (
@@ -46,7 +47,7 @@ class UsersDataTable extends Component {
               <td>No Data</td>
             </tr>
           :
-            setupTableRows()
+            this.setupTableRows()
           }
           </tbody>
         </table>

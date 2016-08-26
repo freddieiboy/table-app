@@ -15,7 +15,8 @@ class SearchBox extends Component {
     }
 
   handleChange(tags) {
-    this.setState({tags})
+    this.props.addSearchTerm(tags);
+    // this.setState({tags})
   }
 
   autosizingRenderInput = (props) => {
@@ -63,8 +64,8 @@ class SearchBox extends Component {
               placeholder: "Search items, enter separated"
             }}
             renderInput={this.autosizingRenderInput}
-            value={this.state.tags}
-            onChange={(tags) => this.handleChange(tags)} />
+            value={this.props.tags}
+            onChange={(tags) => this.props.addSearchTags(tags)} />
         </div>
       </div>
     )

@@ -10,13 +10,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userDataList: []
+      userDataList: [],
+      filteredUserDataList: [],
+      searchTags: []
     }
   }
 
   componentWillMount = () => {
     this.initUserDatabase();
     this.setupListenToUserDatabase();
+  }
+
+  addSearchTags = (tags) => {
+    this.filteredUserDataList(tags);
+    this.setState({searchTags: tags});
+  }
+
+  filteredUserDataList = (tags) => {
+    let createNewList = [];
+
+    this.state.userDataList.map(user => {
+      tags.map(tag => {
+        if (user.name.toLowerCase() === tag.toLowerCase()) {
+          createNewList.push(user)
+        }
+      })
+    })
+    // setTimeout(() => {
+      this.setState({filteredUserDataList: createNewList})
+    // }, 1000)
   }
 
   initUserDatabase = () => {
@@ -79,6 +101,7 @@ class App extends Component {
         transform: 'translate(0, 7em) scale(6)'
       }
     }
+
     return (
       <div className="App" style={styles.App}>
         <div className="logoContainer" style={styles.logoContainer}>
@@ -86,8 +109,16 @@ class App extends Component {
             <Logo/>
           </div>
         </div>
-        <SearchBox/>
-        <UsersDataTable userDataList={this.state.userDataList}/>
+        <SearchBox
+          addSearchTags={this.addSearchTags}
+          tags={this.state.searchTags}/>
+        <UsersDataTable
+          searchTags={this.state.searchTags}
+          userDataList={
+            this.state.searchTags.length > 0 ?
+            this.state.filteredUserDataList :
+            this.state.userDataList
+          }/>
       </div>
     );
   }
