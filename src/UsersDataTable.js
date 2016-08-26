@@ -29,6 +29,8 @@ class UsersDataTable extends Component {
       }
     }
 
+    console.log(this.props.userDataList)
+
     return (
       <div className="UsersDataTable" style={styles.UsersDataTable}>
         <table>

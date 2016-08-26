@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    this.initUserDatabase();
+    // this.initUserDatabase();
     this.setupListenToUserDatabase();
   }
 
@@ -42,44 +42,46 @@ class App extends Component {
     this.setState({filteredUserDataList: createNewList})
   }
 
-  initUserDatabase = () => {
-    ref.child('UserDataID').transaction((data) => {
-      if (data === null) {
-        // INIT user table data if firebase is null
-        return {
-          1: {
-            name: 'Joe',
-            location: 'California',
-            age: 23
-          },
-          2: {
-            name: 'Lana',
-            location: 'Texas',
-            age: 64
-          },
-          3: {
-            name: 'Tam',
-            location: 'Wyoming',
-            age: 41
-          }
-        }
-      } else {
-        // Push firebase data to local state
-        console.log('UserData exists.')
-      }
-    }, (error) => {
-      if (error) {
-        console.log('Transaction failed abnormally!', error);
-      }
-    });
-  }
+  // initUserDatabase = () => {
+  //   ref.child('UserData').transaction((data) => {
+  //     if (data === null) {
+  //       // INIT user table data if firebase is null
+  //       return {
+  //         1: {
+  //           name: 'Joe',
+  //           location: 'California',
+  //           age: 23,
+  //           id: 1
+  //         },
+  //         2: {
+  //           name: 'Lana',
+  //           location: 'Texas',
+  //           age: 64,
+  //           id: 2
+  //         },
+  //         3: {
+  //           name: 'Tam',
+  //           location: 'Wyoming',
+  //           age: 41,
+  //           id: 3
+  //         }
+  //       }
+  //     } else {
+  //       // Push firebase data to local state
+  //       console.log('UserData exists.')
+  //     }
+  //   }, (error) => {
+  //     if (error) {
+  //       console.log('Transaction failed abnormally!', error);
+  //     }
+  //   });
+  // }
 
   setupListenToUserDatabase = () => {
     let userDataList = [];
-    ref.child('UserData').on('child_added', (user) => {
+    ref.child('UserData').on('value', (user) => {
       const userData = user.val();
-      userDataList.push(userData);
-      this.setState({userDataList})
+      this.setState({userDataList: userData})
     })
   }
 
