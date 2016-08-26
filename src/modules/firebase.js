@@ -1,5 +1,10 @@
 import firebase from 'firebase';
 
+/*
+  Firebase configs that are pushed down to the rest of the app.
+  import FirebaseDb everywhere else and use .ref() to initialize it.
+*/
+
 const config = {
   apiKey: "AIzaSyAuP4w2n5POaenbiwFQNGfB3otBDoVAsqA",
   authDomain: "table-app-5ff92.firebaseapp.com",
