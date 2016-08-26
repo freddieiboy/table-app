@@ -3,6 +3,17 @@ import Button from './Button';
 import { FirebaseDb } from './modules/firebase';
 const ref = FirebaseDb.ref();
 
+/*
+  UserRow. Single Table row.
+
+  <UserRow userData={data}/>
+
+  Holds the indiviual state of each row with the ability to push
+  changes directly to Firebase when the user presses save.
+
+  todo: clean up the row css to not move so much on edit mode. painful right now.
+*/
+
 class UserRow extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +24,23 @@ class UserRow extends Component {
   }
 
   componentWillMount = () => {
+    /*
+      On WillMount, row creates a separate temporary copy of it's own
+      userData prop for future use with pushing changes to Firebase.
+    */
     this.setState({temporaryEditedText: this.props.userData})
   }
 
   enterEditableRowMode = () => {
     this.setState({editMode: true})
   }
+
+  /*
+    Edit Name, Location, Age.
+
+    Each function handles it's own property. Pushing changes to
+    this.state.temporaryEditedText from the text in the inputs on edit.
+  */
 
   editName = (text, userProp) => {
     const newName = {
@@ -49,7 +71,7 @@ class UserRow extends Component {
 
   saveEditedUserData = () => {
     /*
-      Push changes to firebase.
+      Push changes to firebase from this.state.temporaryEditedText.
     */
     const userRef = ref.child('UserData').child(this.props.userData.id);
 
@@ -68,18 +90,22 @@ class UserRow extends Component {
 
     this.setState({
       editMode: false
-    })
+    });
   }
 
   render() {
 
     /*
+      Render UserRow.
+
       Switches between edit-view and view-only with editMode state change.
     */
 
     const editUserInputRow = (userProp, action) => {
       /*
         Pass down the defaultvalue from this.state.userData. Action from one of three edit actions to independentaly update state.
+
+        editUserInputRow(prop, function);
       */
       return (
         <td>
