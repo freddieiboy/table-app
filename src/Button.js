@@ -20,6 +20,12 @@ class Button extends Component {
   }
 
   setAction = () => {
+    /*
+      Run the function that is passed down as a prop.
+
+      todo: If there is a better way than wrapping lots of touch
+      handlers on components or passing down functions. Fix.
+    */
     this.props.action();
     this.unPress();
   }
