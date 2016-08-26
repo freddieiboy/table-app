@@ -12,6 +12,10 @@ class UserRow extends Component {
     }
   }
 
+  componentWillMount = () => {
+    this.setState({temporaryEditedText: this.props.userData})
+  }
+
   enterEditableRowMode = () => {
     this.setState({editMode: true})
   }
@@ -44,6 +48,9 @@ class UserRow extends Component {
   }
 
   saveEditedUserData = () => {
+    /*
+      Push changes to firebase.
+    */
     const userRef = ref.child('UserData').child(this.props.userData.id);
 
     const { name, location, age } = this.state.temporaryEditedText;
@@ -55,8 +62,11 @@ class UserRow extends Component {
       console.log(error);
     });
 
+    /*
+      Flush local state and leave edit mode.
+    */
+
     this.setState({
-      temporaryEditedText: {},
       editMode: false
     })
   }
@@ -66,8 +76,6 @@ class UserRow extends Component {
     /*
       Switches between edit-view and view-only with editMode state change.
     */
-
-    console.log(this.state.temporaryEditedText)
 
     const editUserInputRow = (userProp, action) => {
       /*
