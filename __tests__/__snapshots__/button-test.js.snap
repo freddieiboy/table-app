@@ -1,0 +1,12 @@
+exports[`App container should exist 1`] = `
+<button
+  className="button button-black"
+  onMouseDown={[Function anonymous]}
+  onMouseUp={[Function anonymous]}
+  style={
+    Object {
+      "backgroundColor": "black",
+      "borderColor": "black"
+    }
+  } />
+`;
