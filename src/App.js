@@ -5,6 +5,10 @@ import { Logo } from './logo';
 import { FirebaseDb } from './modules/firebase';
 let ref = FirebaseDb.ref();
 
+/*
+  The main app container. Holds Logo, SearchBox, Table.
+*/
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,18 +20,45 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    // this.initUserDatabase();
+    /*
+      IMPORTANT: Initial firebase listen.
+
+      This sets up the initial listener from firebase on WillMount
+      for userdata that is pushed down to the rest of the components.
+      Local state will be updated when new data is changed on firebase database.
+    */
     this.setupListenToUserDatabase();
   }
 
+  setupListenToUserDatabase = () => {
+    let userDataList = [];
+    ref.child('UserData').on('value', (user) => {
+      const userData = user.val();
+      /*
+        Push firebase data to local state.
+      */
+      this.setState({userDataList: userData});
+    })
+  }
+
   addSearchTags = (tags) => {
+    /*
+      Action to add search tags to local state from <SearchBox/>.
+
+      Allows data to be filtered from the top level for easier
+      data management. Later todo: add state container library like
+      Redux for further decoupling of local state from App.js.
+    */
     this.filteredUserDataList(tags);
     this.setState({searchTags: tags});
   }
 
   filteredUserDataList = (tags) => {
     let createNewList = [];
-
+    /*
+      Add filtered items to a new list: filteredUserDataList.
+      Keep the Firebase data separate in it's own list: userDataList.
+    */
     this.state.userDataList.map(user => {
       tags.map(tag => {
         if (
@@ -35,19 +66,11 @@ class App extends Component {
           user.name.toLowerCase() === tag.toLowerCase() ||
           user.age.toString().toLowerCase() === tag.toLowerCase()
         ) {
-          createNewList.push(user)
+          createNewList.push(user);
         }
-      })
-    })
-    this.setState({filteredUserDataList: createNewList})
-  }
-
-  setupListenToUserDatabase = () => {
-    let userDataList = [];
-    ref.child('UserData').on('value', (user) => {
-      const userData = user.val();
-      this.setState({userDataList: userData})
-    })
+      });
+    });
+    this.setState({filteredUserDataList: createNewList});
   }
 
   render() {
@@ -69,6 +92,14 @@ class App extends Component {
         transform: 'translate(0, 7em) scale(6)'
       }
     }
+
+    /*
+      Render Logo, SearchBox, Table.
+
+      The two lists, userDataList and filteredUserDataList are
+      switched and passed down to the table based on if there
+      are any searchTags in local state.
+    */
 
     return (
       <div className="App" style={styles.App}>
