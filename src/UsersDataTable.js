@@ -7,7 +7,6 @@ class UsersDataTable extends Component {
   }
 
   setupTableRows = () => {
-    console.log('running setupTableRows')
     let userDataList = this.props.userDataList;
     return userDataList.map((user, key) => {
       return (

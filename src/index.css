@@ -1,11 +1,77 @@
+/* CSS RESET */
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-#root {
-  /*display: flex;*/
-  /*height: 100%;*/
-  /*width: 100vh;*/
+
+.table-input {
+  max-width: 164px !important;
+}
+
+.react-tagsinput-input input {
+  border: none !important;
+  font-size: 1em;
+  min-width: 200px;
+}
+
+.react-tagsinput-input input:focus {
+  border: none !important;
+}
+
+input {
+  margin-bottom: 0 !important;
+}
+
+/* react-tagsinput CSS */
+
+.react-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-top: 0;
+  width: 100%;
+}
+
+.react-tagsinput--focused {
+  border-color: #a5d24a;
+}
+
+.react-tagsinput-tag {
+  background-color: #cde69c;
+  border-radius: 2px;
+  border: 1px solid #a5d24a;
+  color: #638421;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+  content: " ×";
+}
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  outline: none;
+  padding: 5px;
+  width: 80px;
 }

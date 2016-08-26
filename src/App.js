@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import UsersDataTable from './UsersDataTable';
 import SearchBox from './SearchBox';
 import { Logo } from './logo';
