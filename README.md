@@ -12,7 +12,7 @@ Simple table view with search.
 ## Build
 - `npm run build`
 
-### Table-app V2 TODOs
+## Table-app V2 TODOs
 - [ ] Mock firebase for testing when mockfirebase updates to 3.0.
 - [ ] Add more thorough tests after firebase can be tested.
 - [ ] Setup Rails5 API server for handling backend.
